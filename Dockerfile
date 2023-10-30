@@ -9,7 +9,7 @@ RUN wget -q http://build.openmodelica.org/apt/openmodelica.asc -O- | apt-key add
 RUN apt-get update
 
 # Install minimal OpenModelica Components
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y omc omlib-modelica-3.2.2
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y omc omlibrary
 
 # Install Python components
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip python3-dev build-essential
@@ -20,8 +20,8 @@ RUN pip3 install --upgrade pip
 RUN pip3 install jupyter
 
 # Install OMPython and jupyter-openmodelica kernel
-RUN pip3 install -U git+git://github.com/OpenModelica/OMPython.git
-RUN pip3 install -U git+git://github.com/OpenModelica/jupyter-openmodelica.git
+RUN pip3 install -U https://github.com/OpenModelica/OMPython/archive/master.zip
+RUN pip3 install -U https://github.com/OpenModelica/jupyter-openmodelica/archive/master.zip
 
 # Create a user profile "openmodelicausers" inside the docker container as we should run the docker container as non-root users
 RUN useradd -m -s /bin/bash openmodelicausers
